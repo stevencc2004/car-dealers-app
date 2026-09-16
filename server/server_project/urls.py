@@ -5,7 +5,7 @@ from dealers.views import dealer_detail_page, review_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('dealers.urls')),
+    path('', include('dealers.urls')),
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('about/', TemplateView.as_view(template_name='About.html'), name='about'),
     path('contact/', TemplateView.as_view(template_name='Contact.html'), name='contact'),

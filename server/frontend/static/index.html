@@ -30,7 +30,7 @@
                     <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
                     {% if user.is_authenticated %}
                     <li class="nav-item"><span class="nav-link text-success fw-bold">Welcome, {{ user.username }}</span></li>
-                    <li class="nav-item"><a class="nav-link" href="/api/logout/" onclick="handleLogout(event)">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/djangoapp/logout" onclick="handleLogout(event)">Logout</a></li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="/login/">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="/register/">Register</a></li>
@@ -86,12 +86,12 @@
     <script>
         async function handleLogout(e) {
             e.preventDefault();
-            await fetch('/api/logout/', { method: 'POST' });
+            await fetch('/djangoapp/logout');
             window.location.href = '/';
         }
 
         async function loadDealers(state = '') {
-            const url = state ? `/api/dealers/state/${state}/` : '/api/dealers/';
+            const url = state ? `/fetchDealers/${state}` : '/fetchDealers';
             try {
                 const response = await fetch(url);
                 const dealers = await response.json();
@@ -106,18 +106,20 @@
                 const isLoggedIn = {{ user.is_authenticated|yesno:"true,false" }};
                 
                 dealers.forEach(dealer => {
-                    let buttons = `<a href="/dealers/${dealer._id}/" class="btn btn-primary">View Details</a>`;
+                    let buttons = `<a href="/dealers/${dealer.id}/" class="btn btn-primary">View Details</a>`;
                     if (isLoggedIn) {
-                        buttons += ` <a href="/dealers/${dealer._id}/review/" class="btn btn-success">Review Dealer</a>`;
+                        buttons += ` <a href="/dealers/${dealer.id}/review/" class="btn btn-success">Review Dealer</a>`;
                     }
                     container.innerHTML += `
                         <div class="col-md-4 mb-4">
                             <div class="card dealer-card">
-                                <img src="${dealer.image_url || 'https://via.placeholder.com/300x200?text=Dealer'}" class="card-img-top" alt="${dealer.name}">
+                                <img src="https://via.placeholder.com/300x200?text=Dealer" class="card-img-top" alt="${dealer.full_name}">
                                 <div class="card-body">
-                                    <h5 class="card-title">${dealer.name}</h5>
-                                    <p class="card-text">${dealer.description || 'No description available'}</p>
-                                    <p class="text-muted">${dealer.city}, ${dealer.state}</p>
+                                    <h5 class="card-title">${dealer.full_name}</h5>
+                                    <p class="card-text"><strong>ID:</strong> ${dealer.id}</p>
+                                    <p class="card-text"><strong>Address:</strong> ${dealer.address}</p>
+                                    <p class="card-text"><strong>City:</strong> ${dealer.city}, ${dealer.state}</p>
+                                    <p class="card-text"><strong>ZIP:</strong> ${dealer.zip}</p>
                                     ${buttons}
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-# Car Dealers App
+# xrwvm-fullstack_developer_capstone
 
 A full-stack web application for finding and reviewing car dealerships, built with Django, React, and MongoDB.
 
@@ -17,7 +17,7 @@ Car Dealers App allows users to:
 - **Frontend**: HTML/CSS, Bootstrap 5, React
 - **Database**: MongoDB
 - **CI/CD**: GitHub Actions
-- **Deployment**: Cloud platform (IBM Cloud/AWS/Heroku)
+- **Deployment**: Render.com
 
 ## Features
 
@@ -30,17 +30,17 @@ Car Dealers App allows users to:
 
 ## API Endpoints
 
-- `POST /api/login/` - User login
-- `POST /api/logout/` - User logout
-- `POST /api/register/` - User registration
-- `GET /api/dealers/` - Get all dealers
-- `GET /api/dealers/<id>/` - Get dealer by ID
-- `GET /api/dealers/state/<state>/` - Get dealers by state
-- `GET /api/reviews/<dealer_id>/` - Get dealer reviews
-- `POST /api/reviews/` - Add a review
-- `GET /api/cars/brands/` - Get car brands
-- `GET /api/cars/models/` - Get car models
-- `GET /api/analyze/?text=<text>` - Analyze review sentiment
+- `POST /djangoapp/login` - User login
+- `GET /djangoapp/logout` - User logout
+- `POST /djangoapp/register` - User registration
+- `GET /fetchDealers` - Get all dealers
+- `GET /fetchDealer/<id>` - Get dealer by ID
+- `GET /fetchDealers/<state>` - Get dealers by state
+- `GET /fetchReviews/dealer/<dealer_id>` - Get dealer reviews
+- `POST /addReview` - Add a review
+- `GET /getCarMakes` - Get car brands
+- `GET /getCarModels` - Get car models
+- `GET /analyze/<text>` - Analyze review sentiment
 
 ## Project Structure
 
@@ -61,8 +61,8 @@ Car Dealers App allows users to:
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd car-dealers-app
+   git clone https://github.com/stevencc2004/xrwvm-fullstack_developer_capstone.git
+   cd xrwvm-fullstack_developer_capstone
    ```
 
 2. Install Python dependencies:
@@ -94,58 +94,58 @@ Car Dealers App allows users to:
 
 ### Login
 ```bash
-curl -X POST http://localhost:8000/api/login/ -H "Content-Type: application/json" -d '{"username":"testuser","password":"testpass123"}'
+curl -X POST http://localhost:8000/djangoapp/login -H "Content-Type: application/json" -d '{"userName":"admin","password":"admin123"}'
 ```
 
 ### Logout
 ```bash
-curl -X POST http://localhost:8000/api/logout/
+curl -X GET http://localhost:8000/djangoapp/logout
 ```
 
 ### Get All Dealers
 ```bash
-curl http://localhost:8000/api/dealers/
+curl http://localhost:8000/fetchDealers
 ```
 
 ### Get Dealer by ID
 ```bash
-curl http://localhost:8000/api/dealers/<dealer_id>/
+curl http://localhost:8000/fetchDealer/<dealer_id>
 ```
 
 ### Get Dealers by State (Kansas)
 ```bash
-curl http://localhost:8000/api/dealers/state/Kansas/
+curl http://localhost:8000/fetchDealers/Kansas
 ```
 
 ### Get Dealer Reviews
 ```bash
-curl http://localhost:8000/api/reviews/<dealer_id>/
+curl http://localhost:8000/fetchReviews/dealer/<dealer_id>
 ```
 
 ### Analyze Review Sentiment
 ```bash
-curl "http://localhost:8000/api/analyze/?text=fantastic+services"
+curl http://localhost:8000/analyze/Fantastic%20services
 ```
 
 ### Get Car Brands
 ```bash
-curl http://localhost:8000/api/cars/brands/
+curl http://localhost:8000/getCarMakes
 ```
 
 ### Get Car Models
 ```bash
-curl http://localhost:8000/api/cars/models/
+curl http://localhost:8000/getCarModels
 ```
 
 ## Deployment
 
-The application is deployed at: [Deployment URL]
+The application is deployed at: https://car-dealers-app-8000.proxy.cognitiveclass.ai
 
 ## CI/CD
 
 GitHub Actions workflow automatically:
-- Runs tests
-- Lints code
+- Lints Python Files
+- Lints JavaScript Files
 - Deploys to production on push to main branch
 
 ## License

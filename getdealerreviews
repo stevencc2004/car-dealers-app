@@ -1,4 +1,1 @@
-curl http://localhost:8000/api/reviews/6aaaa7e15d53e2358bb3b20f/
-
-Response:
-[{"_id":"6aaaa7e15d53e2358bb3b216","dealer_id":"6aaaa7e15d53e2358bb3b20f","name":"John D.","review":"Great experience! The staff was very helpful and professional.","sentiment":"positive","user":"john_doe"},{"_id":"6aaaa967e06b556ed77c632c","dealer_id":"6aaaa7e15d53e2358bb3b20f","name":"Test User","review":"Fantastic services","sentiment":"positive","user":"testuser"}]
+curl http://localhost:8000/fetchReviews/dealer/68c8f5cf6fd16b5c8b9a01f2

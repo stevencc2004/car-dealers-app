@@ -7,7 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  lint-python:
+    name: Lint Python Files
     runs-on: ubuntu-latest
 
     steps:
@@ -18,10 +19,47 @@ jobs:
       with:
         python-version: '3.10'
 
+    - name: Install Python linting tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8
+
+    - name: Lint Python files with flake8
+      run: |
+        flake8 server/ --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 server/ --count --max-line-length=127 --statistics
+
+  lint-javascript:
+    name: Lint JavaScript Files
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
+
+    - name: Install ESLint
+      run: |
+        npm install -g eslint
+
+    - name: Lint JavaScript files
+      run: |
+        eslint server/frontend/src/ || true
+
+  build-and-test:
+    needs: [lint-python, lint-javascript]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
 
     - name: Install Python dependencies
       run: |
@@ -32,10 +70,6 @@ jobs:
       run: |
         cd server
         python manage.py test
-
-    - name: Build Frontend
-      run: |
-        echo "Frontend build step completed"
 
     - name: Deploy to Production
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'

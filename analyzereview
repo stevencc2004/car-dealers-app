@@ -1,4 +1,1 @@
-curl "http://localhost:8000/api/analyze/?text=fantastic+services"
-
-Response:
-{"text":"fantastic services","sentiment":"positive"}
+curl http://localhost:8000/analyze/Fantastic%20services

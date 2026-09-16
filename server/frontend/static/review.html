@@ -38,6 +38,29 @@
                     <input type="text" class="form-control" id="name" name="name" required>
                 </div>
                 <div class="mb-3">
+                    <label for="purchase" class="form-label">Purchase Car</label>
+                    <select class="form-control" id="purchase" name="purchase">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="purchase_date" class="form-label">Purchase Date</label>
+                    <input type="date" class="form-control" id="purchase_date" name="purchase_date">
+                </div>
+                <div class="mb-3">
+                    <label for="car_make" class="form-label">Car Make</label>
+                    <input type="text" class="form-control" id="car_make" name="car_make" placeholder="e.g. Toyota">
+                </div>
+                <div class="mb-3">
+                    <label for="car_model" class="form-label">Car Model</label>
+                    <input type="text" class="form-control" id="car_model" name="car_model" placeholder="e.g. Camry">
+                </div>
+                <div class="mb-3">
+                    <label for="car_year" class="form-label">Car Year</label>
+                    <input type="number" class="form-control" id="car_year" name="car_year" min="1900" max="2030" placeholder="e.g. 2024">
+                </div>
+                <div class="mb-3">
                     <label for="review" class="form-label">Your Review</label>
                     <textarea class="form-control" id="review" name="review" rows="5" required></textarea>
                 </div>
@@ -61,9 +84,9 @@
 
         async function loadDealer() {
             try {
-                const response = await fetch(`/api/dealers/${dealerId}/`);
+                const response = await fetch(`/fetchDealer/${dealerId}`);
                 const dealer = await response.json();
-                document.getElementById('dealerName').textContent = `Reviewing: ${dealer.name}`;
+                document.getElementById('dealerName').textContent = `Reviewing: ${dealer.full_name}`;
             } catch (error) {
                 document.getElementById('dealerName').textContent = 'Dealer';
             }
@@ -72,6 +95,11 @@
         async function submitReview() {
             const name = document.getElementById('name').value;
             const review = document.getElementById('review').value;
+            const purchase = document.getElementById('purchase').value;
+            const purchase_date = document.getElementById('purchase_date').value;
+            const car_make = document.getElementById('car_make').value;
+            const car_model = document.getElementById('car_model').value;
+            const car_year = document.getElementById('car_year').value;
 
             if (!name || !review) {
                 alert('Please fill in all fields');
@@ -79,25 +107,34 @@
             }
 
             try {
-                const response = await fetch('/api/reviews/', {
+                const response = await fetch('/addReview', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         dealer_id: dealerId,
                         name: name,
                         review: review,
+                        purchase: purchase,
+                        purchase_date: purchase_date,
+                        car_make: car_make,
+                        car_model: car_model,
+                        car_year: car_year,
                         user: username || 'anonymous'
                     })
                 });
                 const data = await response.json();
                 if (response.ok) {
+                    let sentimentImage = 'neutral.png';
+                    if (data.sentiment === 'positive') sentimentImage = 'positive.png';
+                    else if (data.sentiment === 'negative') sentimentImage = 'negative.png';
+                    
                     document.getElementById('result').style.display = 'block';
                     document.getElementById('result').innerHTML = `
                         <div class="alert alert-success">
                             <strong>Review submitted successfully!</strong><br>
                             Name: ${data.name}<br>
                             Review: ${data.review}<br>
-                            Sentiment: ${data.sentiment}
+                            Sentiment: <img src="/static/${sentimentImage}" alt="${data.sentiment}" width="30" height="30"> ${data.sentiment}
                         </div>
                     `;
                 } else {

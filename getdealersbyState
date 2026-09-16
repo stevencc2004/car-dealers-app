@@ -1,4 +1,1 @@
-curl http://localhost:8000/api/dealers/state/Kansas/
-
-Response:
-[{"_id":"6aaaa7e15d53e2358bb3b20f","name":"Kansas City Auto Mall","city":"Kansas City","state":"Kansas","address":"1234 Main Street","zip_code":"66101","phone":"(913) 555-0101","description":"Family-owned dealership serving Kansas City for over 20 years.","image_url":"https://images.unsplash.com/photo-1562141961-54091e47f58c?w=400"},{"_id":"6aaaa7e15d53e2358bb3b210","name":"Wichita Wheels","city":"Wichita","state":"Kansas","address":"5678 Broadway Ave","zip_code":"67201","phone":"(316) 555-0202","description":"Best prices on new and used cars in Wichita.","image_url":"https://images.unsplash.com/photo-1562141961-54091e47f58c?w=400"}]
+curl http://localhost:8000/fetchDealers/Kansas

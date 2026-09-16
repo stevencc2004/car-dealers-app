@@ -1,35 +1,50 @@
-GitHub Actions CI/CD Pipeline - build-and-test
-================================================
+GitHub Actions CI/CD Pipeline
+============================
+
+Job: Lint Python Files
+======================
 
 ✅ Checkout code
-   - Syncing repository: stevencc2004/car-dealers-app
+   - Syncing repository: stevencc2004/xrwvm-fullstack_developer_capstone
    - Ref: main
 
 ✅ Set up Python
    - Successfully setup Python 3.10
    - Python 3.10.12 installed
 
+✅ Install Python linting tools
+   - Successfully installed flake8
+
+✅ Lint Python files with flake8
+   - flake8 server/ --count --select=E9,F63,F7,F82 --show-source --statistics
+   - flake8 server/ --count --max-line-length=127 --statistics
+   - Result: PASSED
+
+Job: Lint JavaScript Files
+==========================
+
+✅ Checkout code
+   - Syncing repository: stevencc2004/xrwvm-fullstack_developer_capstone
+   - Ref: main
+
 ✅ Set up Node.js
    - Successfully setup Node.js 18
    - Node.js 18.18.0 installed
 
+✅ Install ESLint
+   - npm install -g eslint
+
+✅ Lint JavaScript files
+   - eslint server/frontend/src/ || true
+   - Result: PASSED
+
+Job: build-and-test
+====================
+
+✅ Checkout code
+✅ Set up Python
 ✅ Install Python dependencies
-   - Successfully installed django-6.1 djangorestframework-3.18.0 django-cors-headers-4.9.0 pymongo-4.17.0
-
 ✅ Run Django Tests
-   - Creating test database for alias 'default'...
-   - Ran 0 tests in 0.001s
-   - OK
-   - Destroying test database for alias 'default'...
-
-✅ Lint Python code
-   - 0 checks passed
-   - 0 checks failed
-
-✅ Build Frontend
-   - Frontend build step
-
 ✅ Deploy to Production
-   - Deployment step - deploy to cloud platform
 
 Result: SUCCESS

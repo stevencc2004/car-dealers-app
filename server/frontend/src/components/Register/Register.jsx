@@ -20,7 +20,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/register/', {
+            const response = await fetch('/djangoapp/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
@@ -48,6 +48,7 @@ const Register = () => {
                             type="text"
                             id="username"
                             name="username"
+                            placeholder="Enter username"
                             value={formData.username}
                             onChange={handleChange}
                             required
@@ -59,6 +60,7 @@ const Register = () => {
                             type="text"
                             id="first_name"
                             name="first_name"
+                            placeholder="Enter first name"
                             value={formData.first_name}
                             onChange={handleChange}
                             required
@@ -70,6 +72,7 @@ const Register = () => {
                             type="text"
                             id="last_name"
                             name="last_name"
+                            placeholder="Enter last name"
                             value={formData.last_name}
                             onChange={handleChange}
                             required
@@ -81,6 +84,7 @@ const Register = () => {
                             type="email"
                             id="email"
                             name="email"
+                            placeholder="Enter email"
                             value={formData.email}
                             onChange={handleChange}
                             required
@@ -92,6 +96,7 @@ const Register = () => {
                             type="password"
                             id="password"
                             name="password"
+                            placeholder="Enter password"
                             value={formData.password}
                             onChange={handleChange}
                             required

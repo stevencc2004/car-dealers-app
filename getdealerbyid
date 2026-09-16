@@ -1,4 +1,1 @@
-curl http://localhost:8000/api/dealers/6aaaa7e15d53e2358bb3b20f/
-
-Response:
-{"_id":"6aaaa7e15d53e2358bb3b20f","name":"Kansas City Auto Mall","city":"Kansas City","state":"Kansas","address":"1234 Main Street","zip_code":"66101","phone":"(913) 555-0101","description":"Family-owned dealership serving Kansas City for over 20 years.","image_url":"https://images.unsplash.com/photo-1562141961-54091e47f58c?w=400"}
+curl http://localhost:8000/fetchDealer/68c8f5cf6fd16b5c8b9a01f2
