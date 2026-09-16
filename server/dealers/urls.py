@@ -5,6 +5,7 @@ urlpatterns = [
     path('djangoapp/login', views.login_user, name='login'),
     path('djangoapp/logout', views.logout_user, name='logout'),
     path('djangoapp/register', views.register_user, name='register'),
+    path('djangoapp/get_cars', views.get_cars, name='get_cars'),
     path('fetchDealers', views.get_dealers, name='get_dealers'),
     path('fetchDealer/<str:dealer_id>', views.get_dealer_by_id, name='get_dealer_by_id'),
     path('fetchDealers/<str:state>', views.get_dealers_by_state, name='get_dealers_by_state'),

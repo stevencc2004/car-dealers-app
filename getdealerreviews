@@ -1,1 +1,2 @@
-curl http://localhost:8000/fetchReviews/dealer/68c8f5cf6fd16b5c8b9a01f2
+curl http://localhost:8000/fetchReviews/dealer/6aaac462a5255ca266373a55
+[{"id":"6aaac462a5255ca266373a87","dealer_id":"6aaac462a5255ca266373a55","name":"John D.","review":"Great experience! The staff was very helpful and professional.","sentiment":"positive","purchase":"Yes","purchase_date":"2025-06-15","car_make":"Toyota","car_model":"Camry","car_year":2025,"user":"john_doe"},{"id":"6aaac462a5255ca266373a88","dealer_id":"6aaac462a5255ca266373a55","name":"Test User","review":"Fantastic services","sentiment":"positive","purchase":"Yes","purchase_date":"2025-07-20","car_make":"Honda","car_model":"Civic","car_year":2025,"user":"testuser"}]

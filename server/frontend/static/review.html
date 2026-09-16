@@ -124,9 +124,9 @@
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    let sentimentImage = 'neutral.png';
-                    if (data.sentiment === 'positive') sentimentImage = 'positive.png';
-                    else if (data.sentiment === 'negative') sentimentImage = 'negative.png';
+                    let sentimentImage = '/static/neutral.svg';
+                    if (data.sentiment === 'positive') sentimentImage = '/static/positive.svg';
+                    else if (data.sentiment === 'negative') sentimentImage = '/static/negative.svg';
                     
                     document.getElementById('result').style.display = 'block';
                     document.getElementById('result').innerHTML = `
@@ -134,7 +134,7 @@
                             <strong>Review submitted successfully!</strong><br>
                             Name: ${data.name}<br>
                             Review: ${data.review}<br>
-                            Sentiment: <img src="/static/${sentimentImage}" alt="${data.sentiment}" width="30" height="30"> ${data.sentiment}
+                            Sentiment: <img src="${sentimentImage}" alt="${data.sentiment}" width="30" height="30"> ${data.sentiment}
                         </div>
                     `;
                 } else {

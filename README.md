@@ -33,6 +33,7 @@ Car Dealers App allows users to:
 - `POST /djangoapp/login` - User login
 - `GET /djangoapp/logout` - User logout
 - `POST /djangoapp/register` - User registration
+- `GET /djangoapp/get_cars` - Get car makes and models
 - `GET /fetchDealers` - Get all dealers
 - `GET /fetchDealer/<id>` - Get dealer by ID
 - `GET /fetchDealers/<state>` - Get dealers by state

@@ -56,20 +56,22 @@
 
         async function loadDealer() {
             try {
-                const response = await fetch(`/api/dealers/${dealerId}/`);
+                const response = await fetch(`/fetchDealer/${dealerId}`);
                 const dealer = await response.json();
                 document.getElementById('dealerDetail').innerHTML = `
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="${dealer.image_url || 'https://via.placeholder.com/400x300?text=Dealer'}" class="img-fluid rounded" alt="${dealer.name}">
+                            <img src="https://via.placeholder.com/400x300?text=Dealer" class="img-fluid rounded" alt="${dealer.full_name}">
                         </div>
                         <div class="col-md-6">
-                            <h2>${dealer.name}</h2>
+                            <h2>${dealer.full_name}</h2>
                             <p class="lead">${dealer.description || 'No description available'}</p>
                             <hr>
+                            <p><strong>ID:</strong> ${dealer.id}</p>
                             <p><strong>Address:</strong> ${dealer.address}</p>
-                            <p><strong>City:</strong> ${dealer.city}, ${dealer.state} ${dealer.zip_code}</p>
+                            <p><strong>City:</strong> ${dealer.city}, ${dealer.state} ${dealer.zip}</p>
                             <p><strong>Phone:</strong> ${dealer.phone}</p>
+                            <p><strong>Lat:</strong> ${dealer.lat}, <strong>Long:</strong> ${dealer.long}</p>
                         </div>
                     </div>
                 `;
@@ -80,7 +82,7 @@
 
         async function loadReviews() {
             try {
-                const response = await fetch(`/api/reviews/${dealerId}/`);
+                const response = await fetch(`/fetchReviews/dealer/${dealerId}`);
                 const reviews = await response.json();
                 const container = document.getElementById('reviewsList');
                 
@@ -90,13 +92,18 @@
                 }
 
                 reviews.forEach(review => {
+                    let sentimentImage = '/static/neutral.svg';
+                    if (review.sentiment === 'positive') sentimentImage = '/static/positive.svg';
+                    else if (review.sentiment === 'negative') sentimentImage = '/static/negative.svg';
+                    
                     container.innerHTML += `
                         <div class="review-card">
                             <div class="d-flex justify-content-between">
                                 <h5>${review.name}</h5>
-                                <span class="sentiment sentiment-${review.sentiment}">${review.sentiment}</span>
+                                <span class="sentiment sentiment-${review.sentiment}"><img src="${sentimentImage}" width="20" height="20"> ${review.sentiment}</span>
                             </div>
                             <p>${review.review}</p>
+                            <p><strong>Purchase:</strong> ${review.purchase || 'N/A'} | <strong>Date:</strong> ${review.purchase_date || 'N/A'} | <strong>Car:</strong> ${review.car_make || 'N/A'} ${review.car_model || 'N/A'} ${review.car_year || ''}</p>
                             <small class="text-muted">By: ${review.user}</small>
                         </div>
                     `;

@@ -1,1 +1,2 @@
-curl http://localhost:8000/getCarMakes
+curl http://localhost:8000/djangoapp/get_cars
+{"CarModels":[{"CarMake":"Toyota","CarModel":"Camry"},{"CarMake":"Toyota","CarModel":"Corolla"},{"CarMake":"Honda","CarModel":"Civic"},{"CarMake":"Honda","CarModel":"Accord"},{"CarMake":"Ford","CarModel":"Mustang"},{"CarMake":"Ford","CarModel":"F-150"},{"CarMake":"Chevrolet","CarModel":"Silverado"},{"CarMake":"BMW","CarModel":"3 Series"},{"CarMake":"Mercedes-Benz","CarModel":"C-Class"},{"CarMake":"Nissan","CarModel":"Altima"}]}

@@ -196,6 +196,21 @@ def get_car_models(request):
 @csrf_exempt
 @api_view(['GET'])
 @permission_classes([AllowAny])
+def get_cars(request):
+    collection = get_cars_collection()
+    cars = list(collection.find())
+    car_models = []
+    for c in cars:
+        car_models.append({
+            'CarMake': c.get('brand', ''),
+            'CarModel': c.get('model', ''),
+        })
+    return Response({'CarModels': car_models})
+
+
+@csrf_exempt
+@api_view(['GET'])
+@permission_classes([AllowAny])
 def analyze_review(request, text=''):
     if not text:
         text = request.query_params.get('text', '')
