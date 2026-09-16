@@ -136,6 +136,11 @@ def dealer_detail_page(request, dealer_id):
     from django.shortcuts import render
     return render(request, 'dealer.html', {'dealer_id': dealer_id})
 
+def review_page(request, dealer_id):
+    from django.shortcuts import render
+    username = request.user.username if request.user.is_authenticated else 'anonymous'
+    return render(request, 'review.html', {'dealer_id': dealer_id, 'username': username})
+
 def analyze_sentiment(text):
     positive_words = ['great', 'excellent', 'good', 'fantastic', 'wonderful', 'amazing', 'love', 'best', 'happy', 'satisfied']
     negative_words = ['bad', 'terrible', 'poor', 'awful', 'worst', 'hate', 'horrible', 'disappointed', 'angry', 'unhappy']
