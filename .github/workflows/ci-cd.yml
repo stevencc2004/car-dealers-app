@@ -1,0 +1,49 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install Python dependencies
+      run: |
+        cd server
+        python -m pip install --upgrade pip
+        pip install django djangorestframework django-cors-headers pymongo
+
+    - name: Run Django Tests
+      run: |
+        cd server
+        python manage.py test
+
+    - name: Lint Python code
+      run: |
+        cd server
+        python -m flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    - name: Build Frontend
+      run: |
+        echo "Frontend build step"
+
+    - name: Deploy to Production
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: |
+        echo "Deployment step - deploy to cloud platform"

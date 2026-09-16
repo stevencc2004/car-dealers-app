@@ -1,0 +1,13 @@
+django_server
+=============
+
+$ python manage.py runserver
+
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 13, 2026 - 10:30:00
+Django version 6.1, using settings 'server_project.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.

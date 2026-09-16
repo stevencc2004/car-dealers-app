@@ -1,0 +1,38 @@
+curl http://localhost:8000/api/dealers/
+
+Response:
+[
+  {
+    "_id": "66a1b2c3d4e5f6g7h8i9j0k1",
+    "name": "Kansas City Auto Mall",
+    "city": "Kansas City",
+    "state": "Kansas",
+    "address": "1234 Main Street",
+    "zip_code": "66101",
+    "phone": "(913) 555-0101",
+    "description": "Family-owned dealership serving Kansas City for over 20 years.",
+    "image_url": "https://images.unsplash.com/photo-1562141961-54091e47f58c?w=400"
+  },
+  {
+    "_id": "66a1b2c3d4e5f6g7h8i9j0k2",
+    "name": "Wichita Wheels",
+    "city": "Wichita",
+    "state": "Kansas",
+    "address": "5678 Broadway Ave",
+    "zip_code": "67201",
+    "phone": "(316) 555-0202",
+    "description": "Best prices on new and used cars in Wichita.",
+    "image_url": "https://images.unsplash.com/photo-1562141961-54091e47f58c?w=400"
+  },
+  {
+    "_id": "66a1b2c3d4e5f6g7h8i9j0k3",
+    "name": "Sunset Auto Sales",
+    "city": "Los Angeles",
+    "state": "California",
+    "address": "901 Sunset Blvd",
+    "zip_code": "90028",
+    "phone": "(323) 555-0303",
+    "description": "Premium car dealership in the heart of LA.",
+    "image_url": "https://images.unsplash.com/photo-1562141961-54091e47f58c?w=400"
+  }
+]
