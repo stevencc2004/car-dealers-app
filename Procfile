@@ -1,1 +1,1 @@
-web: cd server && gunicorn server_project.wsgi:application --bind 0.0.0.0:$PORT
+web: cd server && python manage.py migrate && python manage.py seed_db && gunicorn server_project.wsgi:application --bind 0.0.0.0:$PORT
