@@ -18,6 +18,7 @@ def serialize_doc(doc):
         return serialized
     return None
 
+@csrf_exempt
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def login_user(request):
@@ -29,12 +30,14 @@ def login_user(request):
         return Response({'message': 'Login successful', 'username': user.username})
     return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
+@csrf_exempt
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def logout_user(request):
     logout(request)
     return Response({'message': 'Logout successful'})
 
+@csrf_exempt
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def register_user(request):
