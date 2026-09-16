@@ -1,7 +1,4 @@
 curl "http://localhost:8000/api/analyze/?text=fantastic+services"
 
 Response:
-{
-  "text": "fantastic services",
-  "sentiment": "positive"
-}
+{"text":"fantastic services","sentiment":"positive"}
